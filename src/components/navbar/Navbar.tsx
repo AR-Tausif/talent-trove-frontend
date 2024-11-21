@@ -13,7 +13,9 @@ import {
 } from '@/components/ui/popover';
 import { initialItems } from '@/data';
 import Logo from '../icons/Logo';
-import LogoImage from '../../../public/logo.png';
+
+import { Button } from '../ui';
+
 const NavItems = () => {
   return (
     <ul className="hidden md:flex space-x-8">
@@ -33,22 +35,12 @@ const Navbar = () => {
       <div className="container mx-auto  max-w-[1104px]  rounded-3xl  px-5 py-4 mt-5   opacity-[90%]   glass-effect">
         <nav className="flex justify-between items-center ">
           {/* <div className="text-2xl font-bold">Logo</div> */}
-          <Logo src={LogoImage} alt="website logo" />
+          <Logo />
           <NavItems />
           <div className="flex gap-4 space-x-2 mx-5 items-center">
             <div className="md:flex hidden gap-4 space-x-2">
-              <button
-                className="w-[60px] h-[32px] rounded-md text-[16px] text-[#111827] border
-            "
-              >
-                Login
-              </button>
-              <button
-                className="w-[70px] h-[34px] rounded-md text-[14px]  border bg-black text-white
-            "
-              >
-                Register
-              </button>
+              <Button variant="outline">Login</Button>
+              <Button>Register</Button>
             </div>
 
             <div className="md:hidden">

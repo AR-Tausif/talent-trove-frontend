@@ -1,11 +1,11 @@
-import Image, { StaticImageData } from 'next/image';
-
-type TProps = {
-  src: StaticImageData;
-  alt: string;
-};
-
-const Logo = ({ src, alt }: TProps) => {
-  return <Image src={src} alt={alt} width="64" height="64" />;
+import Image from 'next/image';
+import LogoImage from '../../../public/logo.png';
+import Link from 'next/link';
+const Logo = () => {
+  return (
+    <Link href="/">
+      <Image src={LogoImage} alt="website logo" width="36" height="36" />
+    </Link>
+  );
 };
 export default Logo;

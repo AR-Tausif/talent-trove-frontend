@@ -1,14 +1,16 @@
 import { Facebook, Linkedin, Twitter } from 'lucide-react';
+import Logo from '../icons/Logo';
 
 const Footer = () => {
   return (
-    <footer className="bg-white   text-gray-600 py-8 mt-8">
-      <div className="  mx-auto   max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="bg-white text-gray-600 py-8 mt-8">
+      <div className="  mx-auto max-w-7xl px-6 md:px-12 lg:px-24 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center space-x-2 mb-4">
-            <div className="bg-blue-500 p-2 rounded-full">
+            {/* <div className="bg-blue-500 p-2 rounded-full">
               <span className="text-white font-bold text-lg">T</span>
-            </div>
+            </div> */}
+            <Logo />
             <h2 className="text-lg font-bold">Talent Trove</h2>
           </div>
           <p className="text-sm">

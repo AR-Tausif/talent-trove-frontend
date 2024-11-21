@@ -12,7 +12,8 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { initialItems } from '@/data';
-
+import Logo from '../icons/Logo';
+import LogoImage from '../../../public/logo.png';
 const NavItems = () => {
   return (
     <ul className="hidden md:flex space-x-8">
@@ -31,7 +32,8 @@ const Navbar = () => {
     <header className="p-3 fixed w-[100vw] top-0 z-50">
       <div className="container mx-auto  max-w-[1104px]  rounded-3xl  px-5 py-4 mt-5   opacity-[90%]   glass-effect">
         <nav className="flex justify-between items-center ">
-          <div className="text-2xl font-bold">Logo</div>
+          {/* <div className="text-2xl font-bold">Logo</div> */}
+          <Logo src={LogoImage} alt="website logo" />
           <NavItems />
           <div className="flex gap-4 space-x-2 mx-5 items-center">
             <div className="md:flex hidden gap-4 space-x-2">

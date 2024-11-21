@@ -1,5 +1,6 @@
 import { initialItems } from '@/data';
 import Link from 'next/link';
+import { Button } from '../ui';
 
 const MobileMenu = () => {
   return (
@@ -16,18 +17,8 @@ const MobileMenu = () => {
       </ul>
 
       <div className="flex  gap-4 space-x-2">
-        <button
-          className="w-[60px] h-[32px] rounded-md text-[16px] text-[#111827] border
-            "
-        >
-          Login
-        </button>
-        <button
-          className="w-[70px] h-[34px] rounded-md text-[14px]  border bg-black text-white
-            "
-        >
-          Register
-        </button>
+        <Button variant="outline">Login</Button>
+        <Button>Register</Button>
       </div>
     </div>
   );

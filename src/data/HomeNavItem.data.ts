@@ -1,8 +1,8 @@
 export const initialItems = [
   {
     id: 1,
-    path: '/pricing',
-    label: 'Pricing',
+    path: '/jobs',
+    label: 'Jobs',
   },
   {
     id: 2,

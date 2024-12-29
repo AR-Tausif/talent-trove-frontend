@@ -3,6 +3,7 @@
 import { JobCard } from '@/components/cards/JobCard';
 import { JobSearch } from './JobSearch';
 import { JobFilters } from './JobFilters';
+import Link from 'next/link';
 
 interface Props extends React.ComponentProps<'div'> {}
 
@@ -19,7 +20,9 @@ export const ShowJobs = ({ ...props }: Props) => {
 
         <div id="job container" className="space-y-3">
           {Array.from({ length: 10 }).map((_, index) => (
-            <JobCard key={index} />
+            <Link href="/jobs/62151" key={index}>
+              <JobCard />
+            </Link>
           ))}
         </div>
       </div>

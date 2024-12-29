@@ -1,13 +1,17 @@
+import Link from 'next/link';
+
 const Banner = () => {
   return (
-    <div className="bg-indigo-600 lg:max-w-7xl lg:mx-auto   lg:h-80 rounded-xl p-8 ml-4 mr-4 flex flex-col md:flex-row items-center justify-between text-white">
+    <div className="bg-indigo-600 lg:max-w-7xl lg:mx-auto lg:h-80 rounded-3xl p-20 ml-4 mr-4 flex flex-col md:flex-row items-center justify-between text-white">
       <div className="space-y-4 mb-6 md:mb-0 md:w-1/2">
-        <h2 className="text-2xl font-bold">
+        <h2 className="text-4xl w-3/4 mb-4">
           Set up personalized job search alerts
         </h2>
-        <button className="bg-white text-blue-600 font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-200">
-          Sign Up →
-        </button>
+        <Link href="/auth/register">
+          <button className="bg-white text-blue-600 font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-200">
+            Sign Up →
+          </button>
+        </Link>
       </div>
 
       <div className="relative hidden lg:block  md:w-1/2 w-full max-w-sm">

@@ -72,10 +72,26 @@ export const HowWorks = () => {
         <LeftContentSection />
       </div>
       <div className="gap-6 m-12 lg:m-0 md:m-0 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        <HowWorksCard />
-        <HowWorksCard />
-        <HowWorksCard />
-        <HowWorksCard />
+        <HowWorksCard
+          serial={1}
+          title="Login or Register"
+          desc="Follow the whole step and you are just ready to get started."
+        />
+        <HowWorksCard
+          serial={2}
+          title="Build Profile"
+          desc="Follow the whole step and you are just ready to get started."
+        />
+        <HowWorksCard
+          serial={3}
+          title="Applying Jobs"
+          desc="Follow the whole step and you are just ready to get started."
+        />
+        <HowWorksCard
+          serial={4}
+          title="Got Selected"
+          desc="Follow the whole step and you are just ready to get started."
+        />
       </div>
     </div>
   );

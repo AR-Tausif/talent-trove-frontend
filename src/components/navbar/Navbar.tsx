@@ -39,8 +39,12 @@ const Navbar = () => {
           <NavItems />
           <div className="flex gap-4 space-x-2 mx-5 items-center">
             <div className="md:flex hidden gap-4 space-x-2">
-              <Button variant="outline">Login</Button>
-              <Button>Register</Button>
+              <Link href="/auth/login">
+                <Button variant="outline">Login</Button>
+              </Link>
+              <Link href="/auth/register">
+                <Button>Register</Button>
+              </Link>
             </div>
 
             <div className="md:hidden">

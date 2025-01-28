@@ -24,15 +24,6 @@ export default function ApplicationPage() {
         applications={applications}
         onViewDetails={handleViewDetails}
       />
-      {selectedApplication && (
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Application Details</h2>
-          <ApplicationDetails
-            application={selectedApplication}
-            onClose={handleCloseDetails}
-          />
-        </div>
-      )}
     </main>
   );
 }

@@ -13,6 +13,17 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useState } from 'react';
+import {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
+import { ApplicationDetailsSheet } from './application-details-sheet';
 
 interface ApplicationListProps {
   applications: Application[];
@@ -126,9 +137,12 @@ export function ApplicationList({
                 {new Date(application.appliedDate).toLocaleDateString()}
               </TableCell>
               <TableCell className="text-right">
-                <Button onClick={() => onViewDetails(application)}>
-                  View Details
-                </Button>
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button>View Details</Button>
+                  </SheetTrigger>
+                  <ApplicationDetailsSheet application={application} />
+                </Sheet>
               </TableCell>
             </TableRow>
           ))}

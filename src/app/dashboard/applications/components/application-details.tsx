@@ -6,13 +6,9 @@ import { Button } from '@/components/ui/button';
 
 interface ApplicationDetailsProps {
   application: Application;
-  onClose: () => void;
 }
 
-export function ApplicationDetails({
-  application,
-  onClose,
-}: ApplicationDetailsProps) {
+export function ApplicationDetails({ application }: ApplicationDetailsProps) {
   const getStatusColor = (status: Application['status']) => {
     switch (status) {
       case 'in_progress':
@@ -29,7 +25,7 @@ export function ApplicationDetails({
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto bg-transparent">
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center space-x-4">
           <Avatar className="h-12 w-12">
@@ -75,9 +71,6 @@ export function ApplicationDetails({
           <h3 className="font-semibold">Cover Letter</h3>
           <p className="whitespace-pre-wrap">{application.coverLetter}</p>
         </div>
-        <Button onClick={onClose} className="w-full">
-          Close
-        </Button>
       </CardContent>
     </Card>
   );

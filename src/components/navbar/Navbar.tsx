@@ -51,41 +51,12 @@ const Navbar = () => {
           <NavItems />
           <div className="flex gap-4 space-x-2 mx-5 items-center">
             {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuAction showOnHover>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <span className="sr-only">More</span>
-                  </SidebarMenuAction>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-56 rounded-lg"
-                  // side={useIsMobile ? "bottom" : "right"}
-                  // align={isMobile ? "end" : "start"}
-                >
-                  <DropdownMenuItem>
-                    <StarOff className="text-muted-foreground" />
-                    <span>Remove from Favorites</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <link className="text-muted-foreground" />
-                    <span>Copy Link</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <ArrowUpRight className="text-muted-foreground" />
-                    <span>Open in New Tab</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Trash2 className="text-muted-foreground" />
-                    <span>Delete</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Link href={`/dashboard/${user.role}`}>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </Link>
             ) : (
               <div className="md:flex hidden gap-4 space-x-2">
                 <Link href="/auth/login">

@@ -53,10 +53,16 @@ export default function LoginForm() {
       dispatch(setUser({ user, token: loginResponse.data.token }));
       toast.success(loginResponse.message, { id: toastId });
       Cookies.set('accessToken', loginResponse.data.token);
-      if (user.role == 'job_seeker') {
+
+      // Corrected Redirection Logic
+      if (user.role === 'job_seeker') {
         router.push(`/dashboard/job_seeker`);
+      } else if (user.role === 'employee') {
+        router.push(`/dashboard/employee`);
+      } else {
+        // Redirect to unauthorized or login page for unknown roles
+        router.push('/unauthorized');
       }
-      router.push(`/dashboard/employee`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error?.data?.message || 'Something went wrong!', {

@@ -24,13 +24,12 @@ import { cn } from '@/utils';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
+import { useCreateJobMutation } from '@/redux/features/job/jobsApi';
+import { toast } from 'sonner';
 
 const formSchema = z.object({
   jobTitle: z.string().min(2, {
     message: 'Job title must be at least 2 characters.',
-  }),
-  companyName: z.string().min(2, {
-    message: 'Company name must be at least 2 characters.',
   }),
   jobType: z.enum(['full-time', 'part-time'], {
     required_error: 'You need to select a job type.',
@@ -54,12 +53,13 @@ const formSchema = z.object({
 
 export function JobPostForm() {
   const [requirements, setRequirements] = useState<string[]>([]);
+  const [createJob, { data, error, isLoading }] = useCreateJobMutation();
+  // const dispatch = useDispatch();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       jobTitle: '',
-      companyName: '',
       jobType: 'full-time',
       jobDescription: '',
       officeLocation: '',
@@ -68,10 +68,39 @@ export function JobPostForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log('holla shit');
     console.log(values);
     console.log('Requirements:', requirements);
+    const job = {
+      title: values.jobTitle,
+      employmentType: values.jobType,
+      description: values.jobDescription,
+      location: values.officeLocation,
+      applicationDeadline: values.applicationDeadline,
+    };
+    const jobInfo = {
+      job: job,
+      requirements,
+      salary: {
+        minSalary: Number(values.salaryRangeMin),
+        maxSalary: Number(values.salaryRangeMax),
+        // currency: string,
+      },
+    };
+    const toastId = toast.loading('Please wait for moments');
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const createJobResponse: any = await createJob(jobInfo).unwrap();
+
+      console.log(createJobResponse);
+      toast.success(createJobResponse.message, { id: toastId });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.data?.message || 'Something went wrong!', {
+        id: toastId,
+      });
+    }
   }
 
   return (
@@ -90,19 +119,7 @@ export function JobPostForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="companyName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Company Name</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g. Acme Inc." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="jobType"

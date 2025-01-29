@@ -4,20 +4,25 @@ export type TPassInfo = {
   currentPassword: string;
   newPassword: string;
 };
+
+interface IUserInfo {
+  email: string;
+  password: string;
+}
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (userInfo) => ({
+      query: (userInfo: IUserInfo) => ({
         url: '/auth/login',
         method: 'POST',
-        body: userInfo,
+        body: { data: userInfo },
       }),
     }),
     register: builder.mutation({
       query: (userInfo) => ({
         url: '/auth/register',
         method: 'POST',
-        body: userInfo,
+        body: { data: userInfo },
       }),
     }),
     changePassword: builder.mutation({

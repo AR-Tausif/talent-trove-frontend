@@ -21,6 +21,7 @@ import Link from 'next/link';
 
 export function NavMain({
   items,
+  role,
 }: {
   items: {
     title: string;
@@ -32,6 +33,7 @@ export function NavMain({
       url: string;
     }[];
   }[];
+  role: string;
 }) {
   return (
     <SidebarGroup>
@@ -56,11 +58,13 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <Link href={subItem.url}>
+                      <Link
+                        href={`/dashboard/${role == 'job_seeker' ? 'seeker' : 'employee'}${subItem.url}`}
+                      >
+                        <SidebarMenuSubButton asChild>
                           <span>{subItem.title}</span>
-                        </Link>
-                      </SidebarMenuSubButton>
+                        </SidebarMenuSubButton>
+                      </Link>
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>

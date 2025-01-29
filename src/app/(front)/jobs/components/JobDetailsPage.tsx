@@ -2,11 +2,11 @@
 import {
   useGetAlljobsQuery,
   useGetJobDetailsByIdQuery,
-} from '@/redux/features/student/jobsApi';
+} from '@/redux/features/job/jobsApi';
 import { Loader } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
-import { IJob } from '../../../../../interface/job';
+import { IJob } from '../../../../interface/job';
 
 export default function JobDetailsPage({ slug }: { slug: string }) {
   const { data: jobs, error, isLoading } = useGetJobDetailsByIdQuery(slug);

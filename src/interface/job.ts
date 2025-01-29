@@ -28,5 +28,22 @@ export interface IJob {
   updatedAt: string;
   salaries: ISalary;
   requirements: IRequirement[];
-  tags: ITag;
+  tags?: ITag;
+}
+
+export interface ICreateJobBody {
+  job: {
+    title: string;
+    employmentType: string;
+    description: string;
+    location: string;
+    applicationDeadline: string | Date;
+  };
+  requirements: string[];
+  salary: {
+    minSalary: number;
+    maxSalary: number;
+    // currency: string,
+  };
+  tag?: string[];
 }

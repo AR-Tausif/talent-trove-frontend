@@ -1,14 +1,15 @@
+import { ICreateJobBody } from '@/interface/job';
 import { baseApi } from '@/redux/api/baseApi';
 
 const jobsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createStudent: builder.mutation({
-      query: (studentInfo) => ({
-        url: '/student/create-student',
+    createJob: builder.mutation({
+      query: (jobInfo: ICreateJobBody) => ({
+        url: '/jobs/create-job',
         method: 'POST',
-        body: studentInfo,
+        body: jobInfo,
       }),
-      invalidatesTags: ['students'],
+      invalidatesTags: ['job'],
     }),
     updateStudentData: builder.mutation({
       query: (studentInfo) => ({
@@ -37,7 +38,7 @@ const jobsApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useCreateStudentMutation,
+  useCreateJobMutation,
   useUpdateStudentDataMutation,
   useDeleteStudentByIdMutation,
   useGetAlljobsQuery,

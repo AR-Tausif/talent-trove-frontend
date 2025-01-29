@@ -4,10 +4,10 @@ import { JobCard } from '@/components/cards/JobCard';
 import { JobSearch } from './JobSearch';
 import { JobFilters } from './JobFilters';
 import Link from 'next/link';
-import { useGetAlljobsQuery } from '@/redux/features/student/jobsApi';
+import { useGetAlljobsQuery } from '@/redux/features/job/jobsApi';
 import { Loader } from 'lucide-react';
 import { number, string } from 'yup';
-import { IJob } from '../../../../../interface/job';
+import { IJob } from '../../../../interface/job';
 
 interface Props extends React.ComponentProps<'div'> {}
 

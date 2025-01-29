@@ -15,6 +15,10 @@ const jobsApi = baseApi.injectEndpoints({
       query: () => '/jobs',
       providesTags: ['job'],
     }),
+    getAlljobsByLoggedInEmployer: builder.query({
+      query: () => '/jobs/employee/all',
+      providesTags: ['job'],
+    }),
     getJobDetailsById: builder.query({
       query: (jobId) => `/jobs/${jobId}`,
       providesTags: ['job'],
@@ -39,8 +43,9 @@ const jobsApi = baseApi.injectEndpoints({
 
 export const {
   useCreateJobMutation,
+  useGetAlljobsQuery,
+  useGetAlljobsByLoggedInEmployerQuery,
+  useGetJobDetailsByIdQuery,
   useUpdateStudentDataMutation,
   useDeleteStudentByIdMutation,
-  useGetAlljobsQuery,
-  useGetJobDetailsByIdQuery,
 } = jobsApi;

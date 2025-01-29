@@ -7,7 +7,7 @@ const Page = ({ params }: { params: TParams }) => {
   console.log(slug);
   return (
     <div className="mt-14 ">
-      <JobDetailsPage />
+      <JobDetailsPage slug={slug} />
     </div>
   );
 };

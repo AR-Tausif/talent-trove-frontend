@@ -15,6 +15,17 @@ import { initialItems } from '@/data';
 import Logo from '../icons/Logo';
 
 import { Button } from '../ui';
+import { useAppSelector } from '@/redux/hooks';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { SidebarMenuAction } from '../ui/sidebar';
+import { ArrowUpRight, StarOff, Trash2 } from 'lucide-react';
 
 const NavItems = () => {
   return (
@@ -30,6 +41,7 @@ const NavItems = () => {
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <header className="p-3 fixed w-[100vw] top-0 z-50">
       <div className="container mx-auto  max-w-[1104px]  rounded-3xl  px-5 py-4 mt-5   opacity-[90%]   glass-effect">
@@ -38,14 +50,52 @@ const Navbar = () => {
           <Logo />
           <NavItems />
           <div className="flex gap-4 space-x-2 mx-5 items-center">
-            <div className="md:flex hidden gap-4 space-x-2">
-              <Link href="/auth/login">
-                <Button variant="outline">Login</Button>
-              </Link>
-              <Link href="/auth/register">
-                <Button>Register</Button>
-              </Link>
-            </div>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuAction showOnHover>
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <span className="sr-only">More</span>
+                  </SidebarMenuAction>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-56 rounded-lg"
+                  // side={useIsMobile ? "bottom" : "right"}
+                  // align={isMobile ? "end" : "start"}
+                >
+                  <DropdownMenuItem>
+                    <StarOff className="text-muted-foreground" />
+                    <span>Remove from Favorites</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <link className="text-muted-foreground" />
+                    <span>Copy Link</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <ArrowUpRight className="text-muted-foreground" />
+                    <span>Open in New Tab</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Trash2 className="text-muted-foreground" />
+                    <span>Delete</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="md:flex hidden gap-4 space-x-2">
+                <Link href="/auth/login">
+                  <Button variant="outline">Login</Button>
+                </Link>
+                <Link href="/auth/register">
+                  <Button>Register</Button>
+                </Link>
+              </div>
+            )}
 
             <div className="md:hidden">
               <Popover>

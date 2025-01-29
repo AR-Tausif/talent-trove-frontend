@@ -9,12 +9,7 @@ interface Props extends React.ComponentProps<'div'> {
 
 export const JobCard = ({ job }: Props) => {
   console.log(job);
-  const {
-    title = 's',
-    employmentType = 's',
-    location = 'S',
-    salaries = {},
-  } = job;
+  const { title, employmentType, location, salaries } = job;
   return (
     <div>
       <div className="flex flex-col p-6 rounded-lg border border-gray-200 shadow-sm hover:bg-indigo-100 hover:shadow-lg transition-shadow duration-300   ">

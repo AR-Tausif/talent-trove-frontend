@@ -18,6 +18,9 @@ import { VerifyToken } from '@/utils/verifyToken';
 import { setUser } from '@/redux/features/auth/authSlice';
 import { JwtPayload } from 'jwt-decode';
 
+import Cookies from 'js-cookie';
+import { Loader } from 'lucide-react';
+
 interface IUser extends JwtPayload {
   role?: string;
 }
@@ -46,12 +49,12 @@ export default function LoginForm() {
       const loginResponse: any = await login(userInfo).unwrap();
 
       const user: IUser = VerifyToken(loginResponse.data.token);
-      console.log({ user });
+      console.log({ user, loginResponse });
       dispatch(setUser({ user, token: loginResponse.data.token }));
       toast.success(loginResponse.message, { id: toastId });
-      // Cookies.set('accessToken', loginResponse.data.accessToken);
+      Cookies.set('accessToken', loginResponse.data.token);
       if (user.role == 'job_seeker') {
-        router.push(`/dashboard/seeker`);
+        router.push(`/dashboard/job_seeker`);
       }
       router.push(`/dashboard/employee`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -94,8 +97,16 @@ export default function LoginForm() {
                   />
                 </div>
 
-                <Button className="w-full" type="submit">
-                  Sign I n with Email
+                <Button
+                  className="w-full"
+                  disabled={isLoading ? true : false}
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <Loader className="animate-spin" />
+                  ) : (
+                    'Sign I n with Email'
+                  )}
                 </Button>
               </div>
 

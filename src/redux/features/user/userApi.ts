@@ -42,7 +42,7 @@ const authApi = baseApi.injectEndpoints({
         url: `/user/counting-document`,
         method: 'GET',
       }),
-      providesTags: ['users', 'classes', 'students', 'singleStudent', 'upstdp'],
+      providesTags: ['users', 'students', 'singleStudent', 'upstdp'],
     }),
     editUserNameEmail: builder.mutation({
       query: (userInfo) => ({

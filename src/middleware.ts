@@ -41,8 +41,14 @@ export function middleware(req: NextRequest) {
       // Check if path is allowed for the user's role
       const isPathAllowed = (routes: string[], path: string) => {
         return routes.some((route) => {
+          console.log(`Checking route: ${route} against path: ${path}`);
+
           if (route === '*') return true;
-          const regex = new RegExp(`^${route.replace(/:path\\*/g, '.*')}$`);
+
+          const safeRoute = route.replace(/:path\*/g, '.*');
+          console.log(`Converted regex: ^${safeRoute}$`);
+
+          const regex = new RegExp(`^${safeRoute}$`);
           return regex.test(path);
         });
       };

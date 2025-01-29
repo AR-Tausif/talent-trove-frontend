@@ -58,9 +58,7 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <Link
-                        href={`/dashboard/${role == 'job_seeker' ? 'seeker' : 'employee'}${subItem.url}`}
-                      >
+                      <Link href={subItem.url}>
                         <SidebarMenuSubButton asChild>
                           <span>{subItem.title}</span>
                         </SidebarMenuSubButton>

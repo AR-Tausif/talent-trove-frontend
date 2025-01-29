@@ -22,7 +22,7 @@ import { RequirementsList } from './requirements-list';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 import { cn } from '@/utils';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, Loader } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
 import { useCreateJobMutation } from '@/redux/features/job/jobsApi';
 import { toast } from 'sonner';
@@ -257,7 +257,13 @@ export function JobPostForm() {
           )}
         />
 
-        <Button type="submit">Submit Job Post</Button>
+        <Button
+          className="w-full"
+          disabled={isLoading ? true : false}
+          type="submit"
+        >
+          {isLoading ? <Loader className="animate-spin" /> : 'Submit Job Post'}
+        </Button>
       </form>
     </Form>
   );

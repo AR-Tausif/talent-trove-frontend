@@ -57,12 +57,13 @@ export default function LoginForm() {
       // Corrected Redirection Logic
       if (user.role === 'job_seeker') {
         router.push(`/dashboard/job_seeker`);
-      } else if (user.role === 'employee') {
-        router.push(`/dashboard/employee`);
+      } else if (user.role === 'employer') {
+        router.push(`/dashboard/employer`);
       } else {
         // Redirect to unauthorized or login page for unknown roles
         router.push('/unauthorized');
       }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error?.data?.message || 'Something went wrong!', {
@@ -77,10 +78,10 @@ export default function LoginForm() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+              Log in to your account
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
+              Enter your email and password below to login your account
             </p>
           </div>
 
@@ -111,7 +112,7 @@ export default function LoginForm() {
                   {isLoading ? (
                     <Loader className="animate-spin" />
                   ) : (
-                    'Sign I n with Email'
+                    'Sign In with Email'
                   )}
                 </Button>
               </div>

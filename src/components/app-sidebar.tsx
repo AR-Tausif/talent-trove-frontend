@@ -65,6 +65,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         url: '/dashboard',
         icon: LayoutDashboard,
         isActive: true,
+        items: [{ title: 'Employer Dashboard', url: '/dashboard/employer' }],
       },
       {
         title: 'Jobs',
@@ -73,11 +74,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: 'Create job post',
-            url: '/create-job',
+            url: '/dashboard/employer/create-job',
           },
           {
             title: 'Get posted jobs',
-            url: '/posted-jobs',
+            url: '/dashboard/employer/posted-jobs',
           },
         ],
       },
@@ -88,7 +89,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: 'All applications',
-            url: '/applications',
+            url: '/dashboard/employer/applications',
           },
         ],
       },
@@ -134,6 +135,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         url: '/dashboard',
         icon: LayoutDashboard,
         isActive: true,
+        items: [
+          {
+            title: 'Job Seeker Dashboard',
+            url: '/dashboard/job_seeker',
+          },
+        ],
       },
       {
         title: 'Jobs',
@@ -141,8 +148,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: SquareTerminal,
         items: [
           {
-            title: 'Applied jobs',
-            url: '/create-job',
+            title: 'All applied jobs',
+            url: '/dashboard/job_seeker/applied-jobs',
           },
         ],
       },

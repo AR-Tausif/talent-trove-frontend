@@ -7,9 +7,17 @@ const jobsApi = baseApi.injectEndpoints({
       query: (jobInfo: ICreateJobBody) => ({
         url: '/jobs/create-job',
         method: 'POST',
-        body: jobInfo,
+        body: { data: jobInfo },
       }),
       invalidatesTags: ['job'],
+    }),
+    getAlljobs: builder.query({
+      query: () => '/jobs',
+      providesTags: ['job'],
+    }),
+    getJobDetailsById: builder.query({
+      query: (jobId) => `/jobs/${jobId}`,
+      providesTags: ['job'],
     }),
     updateStudentData: builder.mutation({
       query: (studentInfo) => ({
@@ -25,14 +33,6 @@ const jobsApi = baseApi.injectEndpoints({
         method: 'DELETE',
       }),
       invalidatesTags: ['students'],
-    }),
-    getAlljobs: builder.query({
-      query: () => '/jobs',
-      providesTags: ['job'],
-    }),
-    getJobDetailsById: builder.query({
-      query: (jobId) => `/jobs/${jobId}`,
-      providesTags: ['job'],
     }),
   }),
 });

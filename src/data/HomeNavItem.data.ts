@@ -1,27 +1,27 @@
 export const initialItems = [
   {
     id: 1,
-    path: '/pricing',
-    label: 'Pricing',
+    path: '/talents',
+    label: 'Find Talent',
   },
   {
     id: 2,
-    path: '/customers',
-    label: 'Customers',
+    path: '/jobs',
+    label: 'Jobs',
   },
   {
     id: 3,
-    path: '/blog',
-    label: 'Blog',
-  },
-  {
-    id: 4,
     path: '/docs',
     label: 'Docs',
   },
   {
+    id: 4,
+    path: '/pricing',
+    label: 'Pricing',
+  },
+  {
     id: 5,
-    path: '/extra',
-    label: 'Extra',
+    path: '/about-us',
+    label: 'About Us',
   },
 ];

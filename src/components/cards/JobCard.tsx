@@ -2,12 +2,16 @@ import { FaBookmark, FaMapMarkerAlt, FaShoppingBag } from 'react-icons/fa';
 import { CiTimer } from 'react-icons/ci';
 import { FaMoneyBill1Wave } from 'react-icons/fa6';
 import Image from 'next/image';
-import { cn } from '@/utils';
-interface Props extends React.ComponentProps<'div'> {}
+import { IJob } from '../../interface/job';
+interface Props extends React.ComponentProps<'div'> {
+  job: IJob;
+}
 
-export const JobCard = ({ ...props }: Props) => {
+export const JobCard = ({ job }: Props) => {
+  console.log(job);
+  const { title, employmentType, location, salaries } = job;
   return (
-    <div {...props}>
+    <div>
       <div className="flex flex-col p-6 rounded-lg border border-gray-200 shadow-sm hover:bg-indigo-100 hover:shadow-lg transition-shadow duration-300   ">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -21,9 +25,7 @@ export const JobCard = ({ ...props }: Props) => {
               />
             </div>
             <div>
-              <h2 className="lg:text-lg sm:text-sm   ">
-                Software Engineer (Android), Libraries
-              </h2>
+              <h2 className="lg:text-lg sm:text-sm">{title}</h2>
             </div>
           </div>
           <div className="text-gray-400 hover:text-gray-600 cursor-pointer">
@@ -33,11 +35,11 @@ export const JobCard = ({ ...props }: Props) => {
         <div className="flex items-center text-gray-600 space-x-6 text-sm mb-4">
           <div className="flex items-center gap-2">
             <FaShoppingBag className="h-5 w-5 text-blue-500" />
-            <span className="font-medium">Segment</span>
+            <span className="font-medium">{employmentType}</span>
           </div>
           <div className="flex items-center gap-2">
             <FaMapMarkerAlt className="h-5 w-5 text-red-500" />
-            <span>London, UK</span>
+            <span>{location}</span>
           </div>
           <div className="flex items-center    gap-2">
             <CiTimer className="h-5   hidden lg:block md:block   w-5 text-green-500" />
@@ -46,12 +48,12 @@ export const JobCard = ({ ...props }: Props) => {
           <div className="flex items-center    gap-2">
             <FaMoneyBill1Wave className="h-5 w-5  hidden lg:block md:block text-yellow-500" />
             <span className="font-semibold  hidden lg:block md:block">
-              $35k - $45k
+              ${salaries?.minSalary} - ${salaries?.maxSalary}
             </span>
           </div>
         </div>
 
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           {[
             { type: 'full-time', label: 'Full Time' },
             { type: 'private', label: 'Private' },
@@ -69,7 +71,7 @@ export const JobCard = ({ ...props }: Props) => {
               {tag.label}
             </span>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

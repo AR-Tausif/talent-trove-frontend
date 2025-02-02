@@ -17,7 +17,7 @@ export default function RegisterPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Login to your account
+              Create an account
             </h1>
             <p className="text-sm text-muted-foreground">
               Enter your email below to create your account
@@ -39,9 +39,10 @@ export default function RegisterPage() {
                       autoCapitalize="none"
                       autoComplete="email"
                       autoCorrect="off"
+                      required
                     />
                   </div>
-                  <Button>Sign In with Email</Button>
+                  <Button type="submit">Sign In with Email</Button>
                 </div>
               </form>
               <div className="relative">

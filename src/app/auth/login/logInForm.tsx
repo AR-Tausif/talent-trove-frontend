@@ -10,8 +10,24 @@ import { loginSchema, LoginSchemaType } from './login.yup-schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InputCombo, InputComboForPassword } from '@/components/forms';
 import { Fragment } from 'react';
+import { toast } from 'sonner';
+import { useLoginMutation } from '@/redux/features/auth/authApi';
+import { useAppDispatch } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { VerifyToken } from '@/utils/verifyToken';
+import { setUser } from '@/redux/features/auth/authSlice';
+import { JwtPayload } from 'jwt-decode';
 
+import Cookies from 'js-cookie';
+import { Loader } from 'lucide-react';
+
+interface IUser extends JwtPayload {
+  role?: string;
+}
 export default function LoginForm() {
+  const [login, { data, error, isLoading }] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,8 +36,40 @@ export default function LoginForm() {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginSchemaType) => {
-    console.log(data);
+  const onSubmit = async (loginData: LoginSchemaType) => {
+    console.log({ data, loginData });
+    const userInfo = {
+      email: loginData.email,
+      password: loginData.password,
+    };
+    const toastId = toast.loading('Please wait for moments');
+    console.log('hllo');
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const loginResponse: any = await login(userInfo).unwrap();
+
+      const user: IUser = VerifyToken(loginResponse.data.token);
+      console.log({ user, loginResponse });
+      dispatch(setUser({ user, token: loginResponse.data.token }));
+      toast.success(loginResponse.message, { id: toastId });
+      Cookies.set('accessToken', loginResponse.data.token);
+
+      // Corrected Redirection Logic
+      if (user.role === 'job_seeker') {
+        router.push(`/dashboard/job_seeker`);
+      } else if (user.role === 'employer') {
+        router.push(`/dashboard/employer`);
+      } else {
+        // Redirect to unauthorized or login page for unknown roles
+        router.push('/unauthorized');
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.data?.message || 'Something went wrong!', {
+        id: toastId,
+      });
+    }
   };
 
   return (
@@ -30,10 +78,10 @@ export default function LoginForm() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+              Log in to your account
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
+              Enter your email and password below to login your account
             </p>
           </div>
 
@@ -56,8 +104,16 @@ export default function LoginForm() {
                   />
                 </div>
 
-                <Button className="w-full" type="submit">
-                  Sign I n with Email
+                <Button
+                  className="w-full"
+                  disabled={isLoading ? true : false}
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <Loader className="animate-spin" />
+                  ) : (
+                    'Sign In with Email'
+                  )}
                 </Button>
               </div>
 

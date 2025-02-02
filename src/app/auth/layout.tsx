@@ -1,6 +1,7 @@
 // import { Metadata } from 'next';
 
 import { LogoIcon } from '@/components/icons';
+import Logo from '@/components/icons/Logo';
 
 interface Props extends React.ComponentPropsWithoutRef<'div'> {}
 
@@ -15,16 +16,21 @@ function AuthenticationPage({ children }: Props) {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
-          <LogoIcon />
-          Acme Inc
+          <div className="bg-white p-2 rounded-md">
+            <Logo />
+          </div>
+          <span className="ml-4">Talent Trove</span>
         </div>
 
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;This library has saved me countless hours of work and
-              helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
+              &ldquo;Talent Trove: Unlocking opportunities, bridging talent with
+              ambition. We empower job seekers and recruiters with seamless
+              hiring solutions, smart automation, and data-driven insights.
+              Redefining recruitment with innovation, efficiency, and
+              transparency—because finding the right fit should be effortless.
+              Your career, your future, your Trove!.&rdquo;
             </p>
             <footer className="text-sm">Sofia Davis</footer>
           </blockquote>

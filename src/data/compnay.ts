@@ -20,7 +20,7 @@ export const companyData: ICompany[] = [
       'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Michael Gough',
     title: 'Senior Front-end Developer',
     description:
@@ -29,7 +29,7 @@ export const companyData: ICompany[] = [
       'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Lana Byrd',
     title: 'Marketing &amp; Sale',
     description:

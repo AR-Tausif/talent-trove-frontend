@@ -2,11 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const CompanyCard = ({
+  id,
   image,
   name,
   title,
   description,
 }: {
+  id: number;
   image: string;
   name: string;
   title: string;
@@ -14,7 +16,7 @@ const CompanyCard = ({
 }) => {
   return (
     <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-      <Link href="/talents/123">
+      <Link href={`/companies/${id}`}>
         <Image
           className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
           src={image}

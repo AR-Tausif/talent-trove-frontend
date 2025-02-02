@@ -1,4 +1,4 @@
-import CompanyCard from './company/company-card';
+import CompanyCard from './components/company-card';
 import { companyData } from '@/data/compnay';
 
 const CompaniesPage = () => {
@@ -20,6 +20,7 @@ const CompaniesPage = () => {
           {companyData.map((company) => (
             <CompanyCard
               key={company.id}
+              id={company.id}
               image={company.image}
               name={company.name}
               title={company.title}
